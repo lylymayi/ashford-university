@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/ashford-institute-university/static/css/main.dc16cfe6.css",
+    "main.js": "/ashford-institute-university/static/js/main.837608fb.js",
+    "index.html": "/ashford-institute-university/index.html",
+    "main.dc16cfe6.css.map": "/ashford-institute-university/static/css/main.dc16cfe6.css.map",
+    "main.837608fb.js.map": "/ashford-institute-university/static/js/main.837608fb.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dc16cfe6.css",
+    "static/js/main.837608fb.js"
+  ]
+}
