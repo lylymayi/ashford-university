@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/ashford-university/static/css/main.dc16cfe6.css",
-    "main.js": "/ashford-university/static/js/main.4787f4b3.js",
+    "main.css": "/ashford-university/static/css/main.f94ea487.css",
+    "main.js": "/ashford-university/static/js/main.40238308.js",
     "index.html": "/ashford-university/index.html",
-    "main.dc16cfe6.css.map": "/ashford-university/static/css/main.dc16cfe6.css.map",
-    "main.4787f4b3.js.map": "/ashford-university/static/js/main.4787f4b3.js.map"
+    "main.f94ea487.css.map": "/ashford-university/static/css/main.f94ea487.css.map",
+    "main.40238308.js.map": "/ashford-university/static/js/main.40238308.js.map"
   },
   "entrypoints": [
-    "static/css/main.dc16cfe6.css",
-    "static/js/main.4787f4b3.js"
+    "static/css/main.f94ea487.css",
+    "static/js/main.40238308.js"
   ]
 }
