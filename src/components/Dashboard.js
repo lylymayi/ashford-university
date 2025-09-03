@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function Dashboard({ user }) {
   const navigate = useNavigate();
@@ -18,14 +18,13 @@ function Dashboard({ user }) {
   // Logout handler
   const handleLogout = () => {
     localStorage.removeItem("currentUser"); // Clear session
-    navigate("/home"); // Redirect to home
+    navigate("/"); // Redirect to home page
   };
 
   return (
     <div className="p-8">
       <div className="flex justify-between items-center mb-6">
         <div className="flex items-center gap-4">
-          {/* ✅ Show profile photo if exists */}
           {currentUser?.photo ? (
             <img
               src={currentUser.photo}
@@ -51,24 +50,24 @@ function Dashboard({ user }) {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <a
-          href="/profile"
+        <Link
+          to="/profile"
           className="bg-blue-100 dark:bg-blue-900 p-4 rounded shadow hover:bg-blue-200 dark:hover:bg-blue-800 transition"
         >
           Profile
-        </a>
-        <a
-          href="/courses"
+        </Link>
+        <Link
+          to="/courses"
           className="bg-green-100 dark:bg-green-900 p-4 rounded shadow hover:bg-green-200 dark:hover:bg-green-800 transition"
         >
           Courses
-        </a>
-        <a
-          href="/announcements"
+        </Link>
+        <Link
+          to="/announcements"
           className="bg-yellow-100 dark:bg-yellow-900 p-4 rounded shadow hover:bg-yellow-200 dark:hover:bg-yellow-800 transition"
         >
           Announcements
-        </a>
+        </Link>
       </div>
     </div>
   );
