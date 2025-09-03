@@ -8,7 +8,7 @@ export default function PageWrapper({ children }) {
       style={{ backgroundImage: "url('/assets/map.jpg')" }}
     >
       {/* Black overlay with 50% opacity */}
-      <div className="absolute inset-0 object-cover opacity-50"></div>
+      <div className="absolute inset-0 bg-white opacity-50"></div>
 
       {/* Content above overlay */}
       <div className="relative z-10">{children}</div>
