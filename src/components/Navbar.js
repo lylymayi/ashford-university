@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 function Navbar() {
@@ -39,17 +39,17 @@ function Navbar() {
       </div>
 
       <div className="space-x-6 flex items-center">
-        <a href="/" className="hover:underline">Home</a>
-        <a href="/about" className="hover:underline">About</a>
+        <Link to="/" className="hover:underline">Home</Link>
+        <Link to="/about" className="hover:underline">About</Link>
 
         {!currentUser ? (
           <>
-            <a href="/registration" className="hover:underline">Registration</a>
-            <a href="/login" className="hover:underline">Login</a>
+            <Link to="/registration" className="hover:underline">Registration</Link>
+            <Link to="/login" className="hover:underline">Login</Link>
           </>
         ) : (
           <>
-            <a href="/profile" className="hover:underline">Profile</a>
+            <Link to="/profile" className="hover:underline">Profile</Link>
             <button
               onClick={handleLogout}
               className="bg-white text-red-800 font-semibold px-4 py-2 rounded-lg hover:bg-gray-200"
