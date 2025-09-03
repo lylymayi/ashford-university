@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import StudentIDPreview from "./StudentIDPreview";
 
@@ -22,10 +22,10 @@ function RegistrationForm() {
   const [success, setSuccess] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
   const [highlightedIndex, setHighlightedIndex] = useState(0);
-  const [showPassword, setShowPassword] = useState(false); // 👁️ Password toggle
+  const [showPassword, setShowPassword] = useState(false);
   const suggestionsRef = useRef(null);
 
-  // Program Options
+  // 📚 Program Options
   const programOptions = {
     "Computing & IT": [
       "BS Computer Science",
@@ -43,8 +43,6 @@ function RegistrationForm() {
       "BS Electronics Engineering",
       "BS Industrial Engineering",
       "BS Chemical Engineering",
-      "BS Aerospace Engineering",
-      "BS Mining Engineering",
     ],
     Business: [
       "BS Accountancy",
@@ -52,9 +50,6 @@ function RegistrationForm() {
       "BS Marketing Management",
       "BS Financial Management",
       "BS Entrepreneurship",
-      "BS Management Accounting",
-      "BS Human Resource Management",
-      "BS Economics",
     ],
     Education: [
       "BSEd English",
@@ -63,8 +58,6 @@ function RegistrationForm() {
       "BSEd Social Studies",
       "BSEd Filipino",
       "Bachelor of Elementary Education",
-      "Bachelor of Early Childhood Education",
-      "Bachelor of Physical Education",
     ],
     Health: [
       "BS Nursing",
@@ -72,9 +65,6 @@ function RegistrationForm() {
       "BS Medical Technology",
       "BS Physical Therapy",
       "BS Radiologic Technology",
-      "BS Nutrition and Dietetics",
-      "BS Public Health",
-      "BS Occupational Therapy",
     ],
     Arts: [
       "BA Communication",
@@ -82,16 +72,11 @@ function RegistrationForm() {
       "BA Political Science",
       "BA Sociology",
       "BA Philosophy",
-      "BA Literature",
-      "BA Fine Arts",
-      "BA History",
-      "BA Theater Arts",
     ],
     "Hospitality & Tourism": [
       "BS Hotel and Restaurant Management",
       "BS Tourism Management",
       "BS Culinary Arts",
-      "BS Hospitality Management",
     ],
   };
 
@@ -103,7 +88,6 @@ function RegistrationForm() {
     item.program.toLowerCase().includes(form.program.toLowerCase())
   );
 
-  // Program input handlers
   const handleProgramChange = (e) => {
     setForm({ ...form, program: e.target.value });
     setShowSuggestions(true);
@@ -135,7 +119,8 @@ function RegistrationForm() {
     }
   };
 
-  const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
 
   const handlePhotoUpload = (e) => {
     const file = e.target.files[0];
@@ -149,7 +134,11 @@ function RegistrationForm() {
   const getPasswordStrength = () => {
     const { password } = form;
     if (password.length < 6) return "Weak";
-    if (/[A-Z]/.test(password) && /\d/.test(password) && /[^A-Za-z0-9]/.test(password))
+    if (
+      /[A-Z]/.test(password) &&
+      /\d/.test(password) &&
+      /[^A-Za-z0-9]/.test(password)
+    )
       return "Strong";
     return "Medium";
   };
@@ -190,89 +179,85 @@ function RegistrationForm() {
 
     setTimeout(() => {
       setSuccess(false);
-      navigate("/login");
+      navigate("/login"); // redirect to login
     }, 2000);
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6 max-w-lg mx-auto">
       {success && (
-        <div className="mb-6 p-4 rounded-lg bg-green-100 text-green-800 text-center font-semibold shadow-sm">
+        <div className="p-4 rounded-lg bg-green-100 text-green-800 text-center font-semibold">
           ✅ Registration successful! Redirecting to login...
         </div>
       )}
 
       {/* Full Name */}
       <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-2">Full Name</label>
+        <label className="block text-sm font-semibold">Full Name</label>
         <input
           type="text"
           name="name"
           value={form.name}
           onChange={handleChange}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:outline-none"
           required
+          className="w-full border px-3 py-2 rounded-lg"
         />
       </div>
 
       {/* Username */}
       <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-2">Username</label>
+        <label className="block text-sm font-semibold">Username</label>
         <input
           type="text"
           name="username"
           value={form.username}
           onChange={handleChange}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:outline-none"
           required
+          className="w-full border px-3 py-2 rounded-lg"
         />
       </div>
 
       {/* Email */}
       <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+        <label className="block text-sm font-semibold">Email</label>
         <input
           type="email"
           name="email"
           value={form.email}
           onChange={handleChange}
-          pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[A-Za-z]{2,}$"
-          title="Enter a valid email address (e.g., example@gmail.com)"
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:outline-none"
           required
+          className="w-full border px-3 py-2 rounded-lg"
         />
       </div>
 
       {/* Phone */}
       <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-2">Phone Number</label>
+        <label className="block text-sm font-semibold">Phone Number</label>
         <input
           type="tel"
           name="phone"
           value={form.phone}
           onChange={handleChange}
           pattern="^09\d{9}$"
-          title="Phone number must start with 09 and be 11 digits long"
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:outline-none"
           required
+          className="w-full border px-3 py-2 rounded-lg"
         />
       </div>
 
       {/* Program */}
       <div className="relative">
-        <label className="block text-sm font-semibold text-gray-700 mb-2">Program</label>
+        <label className="block text-sm font-semibold">Program</label>
         <input
           type="text"
           name="program"
           value={form.program}
           onChange={handleProgramChange}
           onKeyDown={handleKeyDown}
-          placeholder="Start typing your program"
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:outline-none"
+          className="w-full border px-3 py-2 rounded-lg"
           required
         />
         {showSuggestions && form.program && filteredSuggestions.length > 0 && (
-          <div className="absolute z-10 w-full bg-white border border-gray-300 rounded-lg shadow-md mt-1 max-h-60 overflow-y-auto">
+          <div className="absolute z-10 w-full bg-white border rounded-lg shadow-md mt-1 max-h-60 overflow-y-auto">
             {filteredSuggestions.map((item, index) => (
               <div
                 key={`${item.category}-${item.program}`}
@@ -281,11 +266,15 @@ function RegistrationForm() {
                   setShowSuggestions(false);
                 }}
                 className={`px-4 py-2 cursor-pointer ${
-                  index === highlightedIndex ? "bg-suggest text-black" : "hover:bg-red-100"
+                  index === highlightedIndex
+                    ? "bg-red-100"
+                    : "hover:bg-gray-100"
                 }`}
               >
-                <span className="text-sm font-medium">{item.program}</span>
-                <span className="text-xs text-gray-500 block">{item.category}</span>
+                <span>{item.program}</span>
+                <span className="block text-xs text-gray-500">
+                  {item.category}
+                </span>
               </div>
             ))}
           </div>
@@ -294,39 +283,39 @@ function RegistrationForm() {
 
       {/* Year Level */}
       <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-2">Year Level</label>
+        <label className="block text-sm font-semibold">Year Level</label>
         <select
           name="yearLevel"
           value={form.yearLevel}
           onChange={handleChange}
-          className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:outline-none"
           required
+          className="w-full border px-3 py-2 rounded-lg"
         >
           <option value="">Select year</option>
           <option value="1st Year">1st Year</option>
           <option value="2nd Year">2nd Year</option>
           <option value="3rd Year">3rd Year</option>
           <option value="4th Year">4th Year</option>
-          <option value="5th Year">4th Year</option>
+          <option value="5th Year">5th Year</option>
         </select>
       </div>
 
-      {/* Password with toggle */}
+      {/* Password */}
       <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-2">Password</label>
+        <label className="block text-sm font-semibold">Password</label>
         <div className="relative">
           <input
             type={showPassword ? "text" : "password"}
             name="password"
             value={form.password}
             onChange={handleChange}
-            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:outline-none"
             required
+            className="w-full border px-3 py-2 rounded-lg"
           />
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute inset-y-0 right-3 flex items-center text-sm text-red-700 font-medium hover:underline"
+            className="absolute right-3 top-2 text-sm text-red-700"
           >
             {showPassword ? "🙈 Hide" : "👁️ Show"}
           </button>
@@ -346,30 +335,32 @@ function RegistrationForm() {
         )}
       </div>
 
-      {/* Photo Upload */}
+      {/* Photo */}
       <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-2">Upload Photo</label>
+        <label className="block text-sm font-semibold">Upload Photo</label>
         <input
           type="file"
           accept="image/*"
           onChange={handlePhotoUpload}
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+          className="w-full"
         />
       </div>
 
       {/* Captcha */}
       <div>
-        <label className="block text-sm font-semibold text-gray-700 mb-2">Captcha</label>
-        <div className="flex items-center gap-4">
-          <div className="px-4 py-2 font-bold bg-gray-200 rounded-lg tracking-widest select-none">
+        <label className="block text-sm font-semibold">Captcha</label>
+        <div className="flex items-center gap-3">
+          <div className="px-4 py-2 bg-gray-200 rounded-lg font-bold select-none">
             {captchaCode}
           </div>
           <button
             type="button"
             onClick={() =>
-              setCaptchaCode(Math.random().toString(36).substring(2, 8).toUpperCase())
+              setCaptchaCode(
+                Math.random().toString(36).substring(2, 8).toUpperCase()
+              )
             }
-            className="px-3 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
+            className="px-3 py-1 bg-red-600 text-white rounded-lg"
           >
             Refresh
           </button>
@@ -379,24 +370,26 @@ function RegistrationForm() {
           name="captcha"
           value={form.captcha}
           onChange={handleChange}
-          placeholder="Enter captcha"
-          className="w-full mt-3 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-600 focus:outline-none"
           required
+          placeholder="Enter captcha"
+          className="w-full border px-3 py-2 rounded-lg mt-2"
         />
       </div>
 
       {/* Submit */}
-      <div>
-        <button
-          type="submit"
-          className="w-full bg-red-700 text-white font-semibold py-3 rounded-lg hover:bg-red-800 transition duration-200"
-        >
-          Submit Registration
-        </button>
-      </div>
+      <button
+        type="submit"
+        className="w-full bg-red-700 text-white py-2 rounded-lg hover:bg-red-800"
+      >
+        Submit Registration
+      </button>
 
       {/* Student ID Preview */}
-      <StudentIDPreview name={form.name} username={form.username} photo={form.photo} />
+      <StudentIDPreview
+        name={form.name}
+        username={form.username}
+        photo={form.photo}
+      />
     </form>
   );
 }
