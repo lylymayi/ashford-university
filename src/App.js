@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom"; // ✅ changed to HashRouter
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import DarkModeToggle from './components/DarkModeToggle';
@@ -7,7 +7,6 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Registration from './pages/Registration';
 import Login from './pages/Login';
-import ForgotPassword from './pages/ForgotPassword'; // ✅ import the page
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
