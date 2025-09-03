@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 const images = [
-  '/assets/life.jpg',
-  '/assets/achieve.png',
-  '/assets/modern.jpg',
+  `${process.env.PUBLIC_URL}/assets/life.jpg`,
+  `${process.env.PUBLIC_URL}/assets/achieve.png`,
+  `${process.env.PUBLIC_URL}/assets/modern.jpg`,
 ];
 const captions = [
   'Campus Life',

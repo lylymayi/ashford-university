@@ -3,17 +3,17 @@ const testimonials = [
   {
     name: 'Abygael Canaynay',
     text: 'The campus atmosphere is amazing and the faculty truly care about students.',
-    image: '/assets/t1.jpeg',
+    image: `${process.env.PUBLIC_URL}/assets/t1.jpeg`,
   },
   {
     name: 'Sophia Laforteza',
     text: 'Scholarship opportunities made my dream come true!',
-    image: '/assets/t2.jpeg',
+    image: `${process.env.PUBLIC_URL}/assets/t2.jpeg`,
   },
   {
     name: 'Mingyu Batumbakal',
     text: 'Exchange program let me study abroad and broaden my horizons.',
-    image: '/assets/t3.jpg',
+    image: `${process.env.PUBLIC_URL}/assets/t3.jpg`,
   },
 ];
 function Testimonials() {

@@ -12,7 +12,7 @@ function CampusMap() {
 
   return (
     <div className="relative w-full max-w-2xl mx-auto mt-8">
-      <img src="/assets/map.jpg" alt="Campus Map" className="w-full h-80 object-cover rounded-lg" />
+      <img src={`${process.env.PUBLIC_URL}/assets/map.jpg`}  alt="Campus Map" className="w-full h-80 object-cover rounded-lg" />
       {facilities.map((facility, i) => (
         <button
           key={i}

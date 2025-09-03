@@ -7,7 +7,6 @@ function Dashboard({ user }) {
   useEffect(() => {
     // Check if a user is logged in
     const currentUser = user || JSON.parse(localStorage.getItem("currentUser"));
-
     if (!currentUser) {
       navigate("/login"); // Redirect if no user
     }
@@ -25,9 +24,24 @@ function Dashboard({ user }) {
   return (
     <div className="p-8">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-2xl font-bold">
-          Welcome, {currentUser?.name || "Student"}!
-        </h2>
+        <div className="flex items-center gap-4">
+          {/* ✅ Show profile photo if exists */}
+          {currentUser?.photo ? (
+            <img
+              src={currentUser.photo}
+              alt="Profile"
+              className="w-14 h-14 rounded-full border object-cover"
+            />
+          ) : (
+            <div className="w-14 h-14 rounded-full bg-gray-200 flex items-center justify-center text-gray-500">
+              No Photo
+            </div>
+          )}
+          <h2 className="text-2xl font-bold">
+            Welcome, {currentUser?.name || "Student"}!
+          </h2>
+        </div>
+
         <button
           onClick={handleLogout}
           className="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition"

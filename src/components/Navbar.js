@@ -31,7 +31,7 @@ function Navbar() {
       {/* School name with logo */}
       <div className="font-bold text-lg flex items-center space-x-2">
         <img
-          src="/assets/campus1.png" // <-- replace with your logo path
+          src={`${process.env.PUBLIC_URL}/assets/campus1.png`} // <-- replace with your logo path
           alt="Ashford Institute University Logo"
           className="w-12 h-12" // adjust size as needed
         />

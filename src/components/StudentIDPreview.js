@@ -1,24 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
+import StudentIDPreview from "./StudentIDPreview";
 
-function StudentIDPreview({ name, username, photo }) {
+function RegistrationForm() {
+  const [name, setName] = useState("");
+  const [username, setUsername] = useState("");
+  const [photo, setPhoto] = useState(null);
+
+  const handlePhotoChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setPhoto(URL.createObjectURL(file)); // creates a preview URL
+
+      const currentUser = JSON.parse(localStorage.getItem("currentUser")) || {};
+      const updatedUser = { ...currentUser, photo: photoURL };
+      localStorage.setItem("currentUser", JSON.stringify(updatedUser));
+    }
+  };
+
   return (
-    <div className="mt-10 p-6 border rounded-xl shadow-lg bg-gray-50 max-w-sm mx-auto text-center">
-      <h3 className="text-lg font-bold text-red-700 mb-3">🎓 Student ID Preview</h3>
-      {photo ? (
-        <img
-          src={photo}
-          alt="Student"
-          className="w-24 h-24 rounded-full mx-auto mb-3 object-cover border"
-        />
-      ) : (
-        <div className="w-24 h-24 rounded-full mx-auto mb-3 bg-gray-200 flex items-center justify-center text-gray-500">
-          No Photo
-        </div>
-      )}
-      <p className="font-semibold text-gray-800">{name || "Full Name"}</p>
-      <p className="text-sm text-gray-600">{username || "Username"}</p>
+    <div className="p-6">
+      <h2 className="text-xl font-bold mb-4">Registration</h2>
+
+      <input
+        type="text"
+        placeholder="Full Name"
+        value={name}
+        onChange={(e) => setName(e.target.value)}
+        className="border p-2 rounded mb-2 block w-full"
+      />
+
+      <input
+        type="text"
+        placeholder="Username"
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
+        className="border p-2 rounded mb-2 block w-full"
+      />
+
+      <input
+        type="file"
+        accept="image/*"
+        onChange={handlePhotoChange}
+        className="mb-4 block"
+      />
+
+      {/* Preview component */}
+      <StudentIDPreview name={name} username={username} photo={photo} />
     </div>
   );
 }
 
-export default StudentIDPreview;
+export default RegistrationForm;

@@ -6,7 +6,7 @@ function Home() {
     <div>
       {/* Hero Section */}
       <header className="relative bg-hero flex flex-col items-center justify-center h-72">
-        <img src="/assets/campus2.png" alt="Campus" className="absolute inset-0 w-full h-full object-cover opacity-50" />
+        <img src={`${process.env.PUBLIC_URL}/assets/campus2.png`} alt="Campus" className="absolute inset-0 w-full h-full object-cover opacity-50" />
         <div className="relative z-10 text-center">
           <h1 className="text-4xl text-black text-outline-black font-bold font-century">Welcome to Ashford Institute University</h1>
           <p className="mt-4 text-xl text-black font-arial">Empowering Minds, Shaping Futures</p>
