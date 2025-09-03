@@ -123,13 +123,15 @@ function RegistrationForm() {
     setForm({ ...form, [e.target.name]: e.target.value });
 
   const handlePhotoUpload = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => setForm({ ...form, photo: reader.result });
-      reader.readAsDataURL(file);
-    }
-  };
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setForm((prevForm) => ({ ...prevForm, photo: reader.result }));
+    };
+    reader.readAsDataURL(file);
+  }
+};
 
   const getPasswordStrength = () => {
     const { password } = form;
